@@ -14,7 +14,7 @@ class CompressedFile:
         # print("file_name_no_extension: " + self.file_name_no_extension)
         # print("default folder for extraction: " + self.file_default_output_folder)
 
-    def uncompress(self, output_path, remove_source=False, clean_before_uncompress=False):
+    def uncompress(self, output_path=None, remove_source=False, clean_before_uncompress=False):
         if output_path is None:
             output_path = self.file_output_folder
         # print("Uncompress: " +  self.file_path + " to " + output_path)
@@ -22,7 +22,7 @@ class CompressedFile:
             shutil.rmtree(output_path)
 
         if not os.path.exists(output_path):
-            os.mkdir(output_path)
+            os.makedirs(output_path)
 
         shutil.unpack_archive(self.file_path, extract_dir=output_path)
 
